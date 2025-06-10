@@ -48,3 +48,7 @@ def correct_word(word, vocab):
         return []
     else:
         return suggestions
+    
+def load_vocab(file_path):
+    with open(file_path, 'r', encoding='latin') as file:
+        return {line.strip().lower() for line in file}
