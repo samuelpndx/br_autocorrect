@@ -25,6 +25,26 @@ def levenshtein(s1, s2):
             D[i][j] = min(D[i - 1][j] + 1,          #Deletion
                           D[i][j -1] + 1,           #Insertion
                           D[i - 1][j - 1] + cost)   #Replacement
-                            
+
     #The final result is in the lower right corner of the matrix
     return D[len(s1)][len(s2)]
+
+def correct_word(word, vocab):
+    word = word.lower()
+    if word in vocab:
+        return [word]
+    
+    suggestions = []
+    min_distance = float('inf')
+    for vocab_word in vocab:
+        distance = levenshtein(word, vocab_word)
+        if distance < min_distance:
+            min_distance = distance
+            suggestions = [vocab_word]
+        elif distance == min_distance:
+            suggestions.append(vocab_word)
+
+    if min_distance > 3:
+        return []
+    else:
+        return suggestions
