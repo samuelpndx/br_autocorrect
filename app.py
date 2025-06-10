@@ -50,5 +50,23 @@ def correct_word(word, vocab):
         return suggestions
     
 def load_vocab(file_path):
-    with open(file_path, 'r', encoding='latin') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         return {line.strip().lower() for line in file}
+    
+app = Flask(__name__)
+VOCAB = load_vocab('dict.txt')
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    original_word = ""
+    result = None
+
+    if request.method == 'POST':
+        original_word = request.form['word']
+        if original_word:
+            result = correct_word(original_word, VOCAB)
+
+    return render_template('index.html', result=result, original_word=original_word)
+
+if __name__ == '__main__':
+    app.run(debug=True)
