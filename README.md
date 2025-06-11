@@ -2,6 +2,9 @@
 
 `br_autocorrect` é um projeto simples de corretor ortográfico para o Português Brasileiro. Ele permite que o usuário insira uma palavra e verifica se ela existe em um dicionário. Caso a palavra não seja encontrada, o sistema sugere palavras semelhantes com base na distância de Levenshtein.
 
+Acesse a demonstração ao vivo do sistema no seguinte link: [Live Preview](https://br-autocorrect.vercel.app/)
+
+
 ## ✨ Funcionalidades
 
 *   Verificação ortográfica de palavras em Português Brasileiro.
